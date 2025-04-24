@@ -4,8 +4,25 @@ Particle::Particle() {}
 
 Particle::~Particle() {}
 
-void Particle::Initialize() {}
+void Particle::Initialize(Model*model) {
+	//NULLポインタチェック
+	assert(model);
 
-void Particle::Update() {}
+	// 引数として受け取ったデータをメンバ変数に記録する
+	model_ = model;
 
-void Particle::Draw() {}
+	// ワールド変換の初期化
+	worldTransform_.Initialize();
+
+}
+
+void Particle::Update() {
+	//行列を定数バッファに転送
+	worldTransform_.TransferMatrix();
+
+}
+
+void Particle::Draw(Camera& camera) {
+	// 3Dモデルの描画
+	model_->Draw(worldTransform_, camera);
+}

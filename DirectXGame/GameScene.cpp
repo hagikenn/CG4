@@ -14,12 +14,12 @@ void GameScene::Initialize() {
 	modelParticle_ = Model::CreateSphere(4, 4);
 
 	//カメラの初期化
-	camera_-> Initialize();
+	camera_. Initialize();
 
 	//パーティクルの生成
 	particle_ = new Particle();
 	// パーティクルの初期化
-	particle_->Initialize();
+	particle_->Initialize(modelParticle_);
 
 	
 	
@@ -31,6 +31,15 @@ void GameScene::Update() {
 }
 
 void GameScene::Draw() {
+	//DirectXCommonインスタンスの取得
+	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
+
+	//3Dモデル描画前処理
+	Model::PreDraw(dxCommon->GetCommandList());
+
 	// パーティクルの描画
-	particle_->Draw();
+	particle_->Draw(camera_);
+
+	// 3Dモデル描画後処理
+	Model::PostDraw();
 }

@@ -15,7 +15,7 @@ private:
 	//パーティクル3D
 	Model* modelParticle_= nullptr;
 	//カメラ
-	Camera* camera_ = nullptr;
+	Camera camera_;
 	//パーティクル
 	Particle* particle_ = nullptr;
 
