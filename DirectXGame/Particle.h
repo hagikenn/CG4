@@ -9,7 +9,8 @@ public:
 	///初期化
 	/// </summary>
 	/// <param name="model">モデル</param>
-	void Initialize(Model*model);
+	/// <param name="position">位置</param>
+	void Initialize(Model*model,Vector3 position);
 	void Update();
 	/// <summary>
 	/// 描画
