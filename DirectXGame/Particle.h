@@ -10,7 +10,8 @@ public:
 	/// </summary>
 	/// <param name="model">モデル</param>
 	/// <param name="position">位置</param>
-	void Initialize(Model*model,Vector3 position);
+	/// <param name="velocity">移動量</param>
+	void Initialize(Model*model,Vector3 position,Vector3 velocity);
 	void Update();
 	/// <summary>
 	/// 描画
@@ -29,6 +30,7 @@ private:
 	// モデル
 	Model* model_ = nullptr;
 
-	
+	//移動量
+	Vector3 velocity_;
 
 };

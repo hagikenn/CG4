@@ -21,4 +21,5 @@ private:
 
 	std::list<Particle*> particles_;
 
+	Vector3 velocity;
 };
