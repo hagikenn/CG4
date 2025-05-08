@@ -24,6 +24,9 @@ public:
 	// 色の数値
 	Vector4 color_;
 
+	//デスフラグのgetter
+	bool IsFinished() const { return isFinished_; }
+
 private:
 	//ワールド変換データ
 	WorldTransform worldTransform_;
@@ -32,5 +35,12 @@ private:
 
 	//移動量
 	Vector3 velocity_;
+
+	//終了フラグ
+	bool isFinished_ = false;
+	//継続時間カウント
+	float counter_ = 0.0f;
+	//存続時間(消滅までの時間)<秒>
+	const float kDuration = 1.0f;
 
 };

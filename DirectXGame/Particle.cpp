@@ -30,6 +30,21 @@ void Particle::Initialize(Model* model, Vector3 position, Vector3 velocity) {
 
 void Particle::Update() {
 	
+	// 終了なら何もしない
+	if (isFinished_) {
+		return;
+	}
+
+	// カウンターを1フレーム分の秒数進める
+	counter_ += 1.0f / 60.0f;
+
+	// 存続時間の上限に達したら
+	if (counter_ >= kDuration) {
+		counter_ = kDuration;
+		// 終了扱いにする
+		isFinished_ = true;
+	}
+
 	//色変更オブジェクトに色の数値を設定する
 	objectColor_.SetColor(color_);
 
