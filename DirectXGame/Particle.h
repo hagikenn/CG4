@@ -17,9 +17,17 @@ public:
 	/// <param name="camera">カメラ</param>
 	void Draw(Camera&camera);
 
+	// 色変更オブジェクト
+	ObjectColor objectColor_;
+	// 色の数値
+	Vector4 color_;
+
 private:
 	//ワールド変換データ
 	WorldTransform worldTransform_;
 	// モデル
 	Model* model_ = nullptr;
+
+	
+
 };
