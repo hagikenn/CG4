@@ -1,5 +1,6 @@
 #include "Particle.h"
 using namespace MathUtility;
+#include <algorithm>
 
 Particle::Particle() {}
 
@@ -53,6 +54,9 @@ void Particle::Update() {
 
 	//行列の更新
 	worldTransform_.UpdateMatrix();
+
+	//フェード処理
+	color_.w = std::clamp(1.0f - counter_ / kDuration, 0.0f, 1.0f);
 
 }
 

@@ -49,6 +49,16 @@ void GameScene::Update() {
 	for (Particle* particle : particles_) {
 		particle->Update();
 	}
+
+	// 終了フラグの立ったパーティクルを削除
+	particles_.remove_if([](Particle* particle) {
+		if (particle->IsFinished()) {
+			delete particle; // メモリ解放
+			return true;     // 削除する
+		}
+		return false; // 削除しない
+	});
+	
 }
 
 void GameScene::Draw() {
