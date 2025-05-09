@@ -1,7 +1,7 @@
 #pragma once
-#include"KamataEngine.h"
-using namespace KamataEngine;
 #include "Particle.h"
+#include "KamataEngine.h"
+
 
 class GameScene {
 public:
@@ -15,17 +15,17 @@ public:
 	/// パーティクル発生
 	/// </summary>
 	/// <>param name="position">位置</param>
-	void ParticleBorn(Vector3 position);
+	void ParticleBorn(KamataEngine::Vector3 position);
 
 private:
 	//パーティクル3D
-	Model* modelParticle_= nullptr;
+	KamataEngine::Model* modelParticle_ = nullptr;
 	//カメラ
-	Camera camera_;
+	KamataEngine::Camera camera_;
 	//パーティクル
 	Particle* particle_ = nullptr;
 
 	std::list<Particle*> particles_;
 
-	Vector3 velocity;
+	KamataEngine::Vector3 velocity;
 };

@@ -1,6 +1,9 @@
 #include "Particle.h"
+using namespace KamataEngine;
+
 using namespace MathUtility;
 #include <algorithm>
+
 
 Particle::Particle() {}
 

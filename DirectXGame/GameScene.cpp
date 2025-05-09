@@ -1,10 +1,11 @@
 #include "GameScene.h"
+using namespace KamataEngine;
 #include <random>
-
 std::random_device seedGenerator;
 std::mt19937 randomEngine(seedGenerator());
 std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);
 using namespace MathUtility;
+
 
 GameScene::GameScene() {}
 
@@ -81,7 +82,7 @@ void GameScene::Draw() {
 	Model::PostDraw();
 }
 
-void GameScene::ParticleBorn(Vector3 position) {
+void GameScene::ParticleBorn(KamataEngine::Vector3 position) {
 	for (int i = 0; i < 150; i++) {
 		// パーティクルの生成
 		Particle* particle = new Particle();
