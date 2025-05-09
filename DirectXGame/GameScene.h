@@ -11,6 +11,12 @@ public:
 	void Update();
 	void Draw();
 
+	/// <summary>
+	/// パーティクル発生
+	/// </summary>
+	/// <>param name="position">位置</param>
+	void ParticleBorn(Vector3 position);
+
 private:
 	//パーティクル3D
 	Model* modelParticle_= nullptr;

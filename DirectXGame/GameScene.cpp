@@ -25,30 +25,28 @@ void GameScene::Initialize() {
 	//カメラの初期化
 	camera_. Initialize();
 
-	for (int i = 0; i < 150; i++) {
-		//パーティクルの生成
-		Particle*particle= new Particle();
-		// 位置
-		Vector3 position = {0.0f, 0.0f, 0.0f};
-		//移動量
-		velocity = {distribution(randomEngine), distribution(randomEngine), 0};
-		// パーティクルの初期化
-		particle->Initialize(modelParticle_, position, velocity);
-		//リストに追加
-		particles_.push_back(particle);
-	}
+	
 	
 	Normalize(velocity);
 	velocity *= distribution(randomEngine);
 	velocity *= 0.1f;
+
+	//乱数の初期化
+	srand((unsigned)time(NULL));
 	
 }
 
 void GameScene::Update() {
-	// パーティクルの更新
-	for (Particle* particle : particles_) {
-		particle->Update();
+
+	// 確率で発生
+	if (rand() % 20 == 0) {
+		// 発生位置は乱数
+		Vector3 position = {distribution(randomEngine) * 110.0f, distribution(randomEngine) * 80.0f, 0};
+
+		// パーティクル発生
+		ParticleBorn(position);
 	}
+
 
 	// 終了フラグの立ったパーティクルを削除
 	particles_.remove_if([](Particle* particle) {
@@ -59,6 +57,11 @@ void GameScene::Update() {
 		return false; // 削除しない
 	});
 	
+	// パーティクルの更新
+	for (Particle* particle : particles_) {
+		particle->Update();
+	}
+
 }
 
 void GameScene::Draw() {
@@ -76,4 +79,19 @@ void GameScene::Draw() {
 
 	// 3Dモデル描画後処理
 	Model::PostDraw();
+}
+
+void GameScene::ParticleBorn(Vector3 position) {
+	for (int i = 0; i < 150; i++) {
+		// パーティクルの生成
+		Particle* particle = new Particle();
+		// 位置
+		Vector3 position_ = position;
+		// 移動量
+		velocity = {distribution(randomEngine), distribution(randomEngine), 0};
+		// パーティクルの初期化
+		particle->Initialize(modelParticle_, position_, velocity);
+		// リストに追加
+		particles_.push_back(particle);
+	}
 }
