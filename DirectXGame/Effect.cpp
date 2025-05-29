@@ -19,7 +19,7 @@ void Effect::Initialize(Model* model, Vector3 position, Vector3 velocity,float s
 
 	// 色の設定
 	objectColor_.Initialize();
-	color_ = {1, 1, 0, 1};
+	color_ = {0, 0, 0, 0};
 
 	worldTransform_.translation_ = position;
 
@@ -51,7 +51,7 @@ void Effect::Update() {
 	}
 
 	// 色変更オブジェクトに色の数値を設定する
-	//objectColor_.SetColor(color_);
+	objectColor_.SetColor(color_);
 
 	// 移動
 	//worldTransform_.translation_ += velocity_;

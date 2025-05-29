@@ -90,7 +90,7 @@ void GameScene::EffectBorn(KamataEngine::Vector3 position) {
 		Vector3 position_ = position;
 
 		float size = abs(distribution(randomEngine) * 5.0f);
-		float rotation = (distribution(randomEngine) * 3.14f);
+		float rotation = (distribution(randomEngine) * 6.0f);
 
 
 		// 移動量
@@ -99,5 +99,15 @@ void GameScene::EffectBorn(KamataEngine::Vector3 position) {
 		effect->Initialize(modelEffect_, position_, velocity,size,rotation);
 		// リストに追加
 		effects_.push_back(effect);
+
+		// ランダムな色を生成（0.0～1.0の範囲）
+		float r = static_cast<float>(rand()) / RAND_MAX;
+		float g = static_cast<float>(rand()) / RAND_MAX;
+		float b = static_cast<float>(rand()) / RAND_MAX;
+		float a = 1.0f; // 不透明
+
+		// 色をランダムに設定
+		effect->color_ = {r, g, b, a};
+
 	}
 }
