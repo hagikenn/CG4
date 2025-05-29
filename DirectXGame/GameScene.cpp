@@ -51,13 +51,13 @@ void GameScene::Update() {
 	//}
 
 	// 終了フラグの立ったパーティクルを削除
-	//effects_.remove_if([](Effect* effect) {
-	//	if (effect->IsFinished()) {
-	//		delete effect; // メモリ解放
-	//		return true;     // 削除する
-	//	}
-	//	return false; // 削除しない
-	//});
+	effects_.remove_if([](Effect* effect) {
+		if (effect->IsFinished()) {
+			delete effect; // メモリ解放
+			return true;     // 削除する
+		}
+		return false; // 削除しない
+	});
 	
 	// パーティクルの更新
 	for (Effect* effect : effects_) {
