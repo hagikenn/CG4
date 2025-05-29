@@ -26,7 +26,7 @@ void Effect::Initialize(Model* model, Vector3 position, Vector3 velocity,float s
 	velocity_ = velocity;
 
 	// 大きさ
-	worldTransform_.scale_ = {size, 0.5f, 0.5f};
+	worldTransform_.scale_ = {size, 0.5f, 1.0f};
 
 	// 回転角度
 	worldTransform_.rotation_ = {0.0f, 0.0f, rotation};
