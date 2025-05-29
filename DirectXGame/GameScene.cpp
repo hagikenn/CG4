@@ -33,7 +33,11 @@ void GameScene::Initialize() {
 	//乱数の初期化
 	srand((unsigned)time(NULL));
 	
+	Vector3 position = {0, 0, 0};
 
+	
+	// パーティクル発生
+	EffectBorn(position);
 
 }
 
@@ -42,12 +46,9 @@ void GameScene::Update() {
 	// 確率で発生
 	//if (rand() % 20 == 0) {
 	//	// 発生位置は乱数
-	Vector3 position = {distribution(randomEngine) * 110.0f, distribution(randomEngine) * 80.0f, 0};
 
-	// パーティクル発生
-	EffectBorn(position);
+	
 	//}
-
 
 	// 終了フラグの立ったパーティクルを削除
 	//effects_.remove_if([](Effect* effect) {
@@ -59,9 +60,9 @@ void GameScene::Update() {
 	//});
 	
 	// パーティクルの更新
-	/*for (Effect* effect : effects_) {
+	for (Effect* effect : effects_) {
 		effect->Update();
-	}*/
+	}
 
 }
 
@@ -83,15 +84,20 @@ void GameScene::Draw() {
 }
 
 void GameScene::EffectBorn(KamataEngine::Vector3 position) {
-	for (int i = 0; i < 150; i++) {
+	for (int i = 0; i < 10; i++) {
 		// パーティクルの生成
 		Effect* effect = new Effect();
 		// 位置
 		Vector3 position_ = position;
+
+		float size = abs(distribution(randomEngine) * 5.0f);
+		float rotation = (distribution(randomEngine) * 3.14f);
+
+
 		// 移動量
 		velocity = {distribution(randomEngine), distribution(randomEngine), 0};
 		// パーティクルの初期化
-		effect->Initialize(modelEffect_, position_, velocity);
+		effect->Initialize(modelEffect_, position_, velocity,size,rotation);
 		// リストに追加
 		effects_.push_back(effect);
 	}

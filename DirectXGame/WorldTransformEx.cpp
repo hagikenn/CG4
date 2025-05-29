@@ -22,7 +22,7 @@ void WorldTransform::UpdateMatrix() {
 	Matrix4x4 matTrans = MakeTranslateMatrix(translation_);
 
 	// スケーリング、回転、平行移動を合成して行列を計算する
-	matWorld_ = matTrans * matRot * matScale;
+	matWorld_ = matScale * matRot * matTrans;
 
 	//定数バッファに転送する
 	TransferMatrix();

@@ -7,7 +7,7 @@ Effect::Effect() {}
 
 Effect::~Effect() {}
 
-void Effect::Initialize(Model* model, Vector3 position, Vector3 velocity) {
+void Effect::Initialize(Model* model, Vector3 position, Vector3 velocity,float size,float rotation) {
 	// NULLポインタチェック
 	assert(model);
 
@@ -26,7 +26,11 @@ void Effect::Initialize(Model* model, Vector3 position, Vector3 velocity) {
 	velocity_ = velocity;
 
 	// 大きさ
-	worldTransform_.scale_ = {1.0f, 1.0f, 1.0f};
+	worldTransform_.scale_ = {size, 0.5f, 0.5f};
+
+	// 回転角度
+	worldTransform_.rotation_ = {0.0f, 0.0f, rotation};
+
 }
 
 void Effect::Update() {
