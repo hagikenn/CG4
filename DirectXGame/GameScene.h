@@ -1,5 +1,6 @@
 #pragma once
 #include "Particle.h"
+#include "Effect.h"
 #include "KamataEngine.h"
 
 
@@ -15,17 +16,17 @@ public:
 	/// パーティクル発生
 	/// </summary>
 	/// <>param name="position">位置</param>
-	void ParticleBorn(KamataEngine::Vector3 position);
+	void EffectBorn(KamataEngine::Vector3 position);
 
 private:
 	//パーティクル3D
-	KamataEngine::Model* modelParticle_ = nullptr;
+	KamataEngine::Model* modelEffect_ = nullptr;
 	//カメラ
 	KamataEngine::Camera camera_;
 	//パーティクル
-	Particle* particle_ = nullptr;
+	Effect* effect_ = nullptr;
 
-	std::list<Particle*> particles_;
+	std::list<Effect*> effects_;
 
 	KamataEngine::Vector3 velocity;
 };

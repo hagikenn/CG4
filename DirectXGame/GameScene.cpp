@@ -11,22 +11,20 @@ GameScene::GameScene() {}
 
 GameScene::~GameScene() {
 	// 3Dモデルデータの解放
-	delete modelParticle_;
+	delete modelEffect_;
 	//パーティクルの解放
-	for (Particle* particle : particles_) {
-		delete particle;
+	for (Effect* effect : effects_) {
+		delete effect;
 	}
-	particles_.clear();
+	effects_.clear();
 }
 
 void GameScene::Initialize() {
 	// 3Dモデルデータの生成
-	modelParticle_ = Model::CreateSphere(4, 4);
+	modelEffect_ = Model::CreateSphere(2, 2);
 
 	//カメラの初期化
 	camera_. Initialize();
-
-	
 	
 	Normalize(velocity);
 	velocity *= distribution(randomEngine);
@@ -35,33 +33,35 @@ void GameScene::Initialize() {
 	//乱数の初期化
 	srand((unsigned)time(NULL));
 	
+
+
 }
 
 void GameScene::Update() {
 
 	// 確率で発生
-	if (rand() % 20 == 0) {
-		// 発生位置は乱数
-		Vector3 position = {distribution(randomEngine) * 110.0f, distribution(randomEngine) * 80.0f, 0};
+	//if (rand() % 20 == 0) {
+	//	// 発生位置は乱数
+	Vector3 position = {distribution(randomEngine) * 110.0f, distribution(randomEngine) * 80.0f, 0};
 
-		// パーティクル発生
-		ParticleBorn(position);
-	}
+	// パーティクル発生
+	EffectBorn(position);
+	//}
 
 
 	// 終了フラグの立ったパーティクルを削除
-	particles_.remove_if([](Particle* particle) {
-		if (particle->IsFinished()) {
-			delete particle; // メモリ解放
-			return true;     // 削除する
-		}
-		return false; // 削除しない
-	});
+	//effects_.remove_if([](Effect* effect) {
+	//	if (effect->IsFinished()) {
+	//		delete effect; // メモリ解放
+	//		return true;     // 削除する
+	//	}
+	//	return false; // 削除しない
+	//});
 	
 	// パーティクルの更新
-	for (Particle* particle : particles_) {
-		particle->Update();
-	}
+	/*for (Effect* effect : effects_) {
+		effect->Update();
+	}*/
 
 }
 
@@ -73,26 +73,26 @@ void GameScene::Draw() {
 	Model::PreDraw(dxCommon->GetCommandList());
 
 	// パーティクルの描画
-	for (Particle* particle : particles_) {
+	for (Effect* effect : effects_) {
 		// 3Dモデルの描画
-		particle->Draw(camera_);
+		effect->Draw(camera_);
 	}
 
 	// 3Dモデル描画後処理
 	Model::PostDraw();
 }
 
-void GameScene::ParticleBorn(KamataEngine::Vector3 position) {
+void GameScene::EffectBorn(KamataEngine::Vector3 position) {
 	for (int i = 0; i < 150; i++) {
 		// パーティクルの生成
-		Particle* particle = new Particle();
+		Effect* effect = new Effect();
 		// 位置
 		Vector3 position_ = position;
 		// 移動量
 		velocity = {distribution(randomEngine), distribution(randomEngine), 0};
 		// パーティクルの初期化
-		particle->Initialize(modelParticle_, position_, velocity);
+		effect->Initialize(modelEffect_, position_, velocity);
 		// リストに追加
-		particles_.push_back(particle);
+		effects_.push_back(effect);
 	}
 }

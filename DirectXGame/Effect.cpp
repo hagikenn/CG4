@@ -1,15 +1,14 @@
-#include "Particle.h"
+#include "Effect.h"
 using namespace KamataEngine;
 using namespace MathUtility;
 #include <algorithm>
 
+Effect::Effect() {}
 
-Particle::Particle() {}
+Effect::~Effect() {}
 
-Particle::~Particle() {}
-
-void Particle::Initialize(Model* model, Vector3 position, Vector3 velocity) {
-	//NULLポインタチェック
+void Effect::Initialize(Model* model, Vector3 position, Vector3 velocity) {
+	// NULLポインタチェック
 	assert(model);
 
 	// 引数として受け取ったデータをメンバ変数に記録する
@@ -18,7 +17,7 @@ void Particle::Initialize(Model* model, Vector3 position, Vector3 velocity) {
 	// ワールド変換の初期化
 	worldTransform_.Initialize();
 
-	//色の設定
+	// 色の設定
 	objectColor_.Initialize();
 	color_ = {1, 1, 0, 1};
 
@@ -26,13 +25,12 @@ void Particle::Initialize(Model* model, Vector3 position, Vector3 velocity) {
 
 	velocity_ = velocity;
 
-	//大きさ
-	worldTransform_.scale_ = {0.2f, 0.2f, 0.2f};
-
+	// 大きさ
+	worldTransform_.scale_ = {1.0f, 1.0f, 1.0f};
 }
 
-void Particle::Update() {
-	
+void Effect::Update() {
+
 	// 終了なら何もしない
 	if (isFinished_) {
 		return;
@@ -48,21 +46,20 @@ void Particle::Update() {
 		isFinished_ = true;
 	}
 
-	//色変更オブジェクトに色の数値を設定する
-	objectColor_.SetColor(color_);
+	// 色変更オブジェクトに色の数値を設定する
+	//objectColor_.SetColor(color_);
 
-	//移動
-	worldTransform_.translation_ += velocity_;
+	// 移動
+	//worldTransform_.translation_ += velocity_;
 
-	//行列の更新
+	// 行列の更新
 	worldTransform_.UpdateMatrix();
 
-	//フェード処理
+	// フェード処理
 	color_.w = std::clamp(1.0f - counter_ / kDuration, 0.0f, 1.0f);
-
 }
 
-void Particle::Draw(Camera& camera) {
+void Effect::Draw(Camera& camera) {
 	// 3Dモデルの描画
-	model_->Draw(worldTransform_, camera, &objectColor_); 
+	model_->Draw(worldTransform_, camera, &objectColor_);
 }
