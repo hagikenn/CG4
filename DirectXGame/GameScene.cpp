@@ -33,22 +33,21 @@ void GameScene::Initialize() {
 	//乱数の初期化
 	srand((unsigned)time(NULL));
 	
-	Vector3 position = {0, 0, 0};
-
 	
-	// パーティクル発生
-	EffectBorn(position);
 
 }
 
 void GameScene::Update() {
 
 	// 確率で発生
-	//if (rand() % 20 == 0) {
-	//	// 発生位置は乱数
+	if (rand() % 20 == 0) {
+		// 発生位置は乱数
+		Vector3 position = {distribution(randomEngine) * 30.0f, distribution(randomEngine) * 20.0f, 0};
 
+		//パーティクル発生
+		EffectBorn(position);
 	
-	//}
+	}
 
 	// 終了フラグの立ったパーティクルを削除
 	effects_.remove_if([](Effect* effect) {
