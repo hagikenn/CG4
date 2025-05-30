@@ -2,6 +2,7 @@
 using namespace KamataEngine;
 using namespace MathUtility;
 #include <algorithm>
+#include <cassert>
 
 Effect::Effect() {}
 
