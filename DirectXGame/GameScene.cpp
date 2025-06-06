@@ -10,13 +10,9 @@ using namespace MathUtility;
 GameScene::GameScene() {}
 
 GameScene::~GameScene() {
-	// 3Dモデルデータの解放
-	delete modelEffect_;
-	//パーティクルの解放
-	for (Effect* effect : effects_) {
-		delete effect;
-	}
-	effects_.clear();
+
+	Model2::StaticFinalize();
+	
 }
 
 void GameScene::Initialize() {
@@ -33,7 +29,10 @@ void GameScene::Initialize() {
 	//乱数の初期化
 	srand((unsigned)time(NULL));
 	
-	
+	Model2::StaticInitialize();
+	model2_ = Model2::CreateSphere(2, 2);
+	camera_.Initialize();
+	worldTransform_.Initialize();
 
 }
 
@@ -70,16 +69,12 @@ void GameScene::Draw() {
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 
 	//3Dモデル描画前処理
-	Model::PreDraw(dxCommon->GetCommandList());
+	Model2::PreDraw(dxCommon->GetCommandList());
 
-	// パーティクルの描画
-	for (Effect* effect : effects_) {
-		// 3Dモデルの描画
-		effect->Draw(camera_);
-	}
+	model2_->Draw(worldTransform_, camera_);
 
 	// 3Dモデル描画後処理
-	Model::PostDraw();
+	Model2::PostDraw();
 }
 
 void GameScene::EffectBorn(KamataEngine::Vector3 position) {

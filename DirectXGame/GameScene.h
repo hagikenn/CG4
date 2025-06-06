@@ -2,7 +2,9 @@
 #include "Particle.h"
 #include "Effect.h"
 #include "KamataEngine.h"
+#include "Model2.h"
 
+using namespace KamataEngine;
 
 class GameScene {
 public:
@@ -16,17 +18,22 @@ public:
 	/// パーティクル発生
 	/// </summary>
 	/// <>param name="position">位置</param>
-	void EffectBorn(KamataEngine::Vector3 position);
+	void EffectBorn(Vector3 position);
 
 private:
 	//パーティクル3D
-	KamataEngine::Model* modelEffect_ = nullptr;
+	Model* modelEffect_ = nullptr;
 	//カメラ
-	KamataEngine::Camera camera_;
+	Camera camera_;
 	//パーティクル
 	Effect* effect_ = nullptr;
 
 	std::list<Effect*> effects_;
 
-	KamataEngine::Vector3 velocity;
+	Vector3 velocity;
+
+	Model2* model2_ = nullptr;
+
+	WorldTransform worldTransform_;
+
 };
