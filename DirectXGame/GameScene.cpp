@@ -31,6 +31,7 @@ void GameScene::Initialize() {
 	
 	Model2::StaticInitialize();
 	model2_ = Model2::CreateSphere(2, 2);
+	model2_ = Model2::CreateSquare();
 	camera_.Initialize();
 	worldTransform_.Initialize();
 
