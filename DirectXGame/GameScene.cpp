@@ -11,6 +11,7 @@ GameScene::GameScene() {}
 
 GameScene::~GameScene() {
 
+	delete titleScene_;
 	Model2::StaticFinalize();
 	
 }
@@ -34,6 +35,10 @@ void GameScene::Initialize() {
 	model2_ = Model2::CreateSquare();
 	camera_.Initialize();
 	worldTransform_.Initialize();
+
+	titleScene_ = new TitleScene();
+	titleScene_->Initialize();
+
 
 }
 
@@ -63,6 +68,8 @@ void GameScene::Update() {
 		effect->Update();
 	}
 
+	titleScene_->Update();
+
 }
 
 void GameScene::Draw() {
@@ -72,10 +79,15 @@ void GameScene::Draw() {
 	//3Dモデル描画前処理
 	Model2::PreDraw(dxCommon->GetCommandList());
 
-	model2_->Draw(worldTransform_, camera_);
+	//model2_->Draw(worldTransform_, camera_);
 
 	// 3Dモデル描画後処理
 	Model2::PostDraw();
+
+	Sprite::PreDraw(dxCommon->GetCommandList());
+	titleScene_->Draw();
+	Sprite::PostDraw();
+
 }
 
 void GameScene::EffectBorn(KamataEngine::Vector3 position) {

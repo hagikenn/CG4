@@ -5,8 +5,7 @@ using namespace KamataEngine;
 
 class TitleScene {
 public:
-	TitleScene() ;
-	~TitleScene();
+	
 	void Initialize();
 	void Update();
 	void Draw();
@@ -16,5 +15,6 @@ private:
 
 	uint32_t textureHandle_ = 0;
 	Sprite*sprite_;
-
+	// 進行方向フラグの初期化
+	bool isMovingDown_;
 };

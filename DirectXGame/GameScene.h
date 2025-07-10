@@ -37,7 +37,7 @@ private:
 
 	WorldTransform worldTransform_;
 
-	TitleScene* tilteScene_ = nullptr;
+	TitleScene* titleScene_ = nullptr;
 
 
 };
