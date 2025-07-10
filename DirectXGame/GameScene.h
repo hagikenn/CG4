@@ -3,6 +3,7 @@
 #include "Effect.h"
 #include "KamataEngine.h"
 #include "Model2.h"
+#include "TitleScene.h"
 
 using namespace KamataEngine;
 
@@ -35,5 +36,8 @@ private:
 	Model2* model2_ = nullptr;
 
 	WorldTransform worldTransform_;
+
+	TitleScene* tilteScene_ = nullptr;
+
 
 };
