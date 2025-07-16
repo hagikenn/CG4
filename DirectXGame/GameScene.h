@@ -4,6 +4,7 @@
 #include "KamataEngine.h"
 #include "Model2.h"
 #include "TitleScene.h"
+#include "Stage.h"
 
 using namespace KamataEngine;
 
@@ -38,6 +39,6 @@ private:
 	WorldTransform worldTransform_;
 
 	TitleScene* titleScene_ = nullptr;
-
+	Stage* stage_ = nullptr;
 
 };

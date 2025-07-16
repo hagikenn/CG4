@@ -12,6 +12,7 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 
 	delete titleScene_;
+	delete stage_;
 	Model2::StaticFinalize();
 	
 }
@@ -39,6 +40,8 @@ void GameScene::Initialize() {
 	titleScene_ = new TitleScene();
 	titleScene_->Initialize();
 
+	stage_ = new Stage();
+	stage_->Initialize();
 
 }
 
@@ -69,7 +72,7 @@ void GameScene::Update() {
 	}
 
 	titleScene_->Update();
-
+	stage_->Update();
 }
 
 void GameScene::Draw() {
@@ -86,6 +89,7 @@ void GameScene::Draw() {
 
 	Sprite::PreDraw(dxCommon->GetCommandList());
 	titleScene_->Draw();
+	stage_->Draw();
 	Sprite::PostDraw();
 
 }

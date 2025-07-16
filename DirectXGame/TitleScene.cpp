@@ -36,5 +36,5 @@ void TitleScene::Update() {
 
 void TitleScene::Draw() {
 	// スプライトの描画
-	sprite_->Draw();
+	//sprite_->Draw();
 }
