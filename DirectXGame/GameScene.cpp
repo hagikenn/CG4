@@ -86,7 +86,7 @@ void GameScene::Draw() {
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 
 	Sprite::PreDraw(dxCommon->GetCommandList());
-	titleScene_->Draw();
+	//titleScene_->Draw();
 	stage_->Draw();
 	Sprite::PostDraw();
 
