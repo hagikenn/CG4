@@ -6,21 +6,26 @@ void Stage::Initialize() {
 	// テクスチャの読み込み
 	textureHandle_ = TextureManager::Load("background.png");
 	// スプライトの生成
-	sprite_ = Sprite::Create(textureHandle_, {0, 0});
-	scrollX_ = 0.0f;
+	sprite_[0] = Sprite::Create(textureHandle_, {posX_[0], 0});
+	sprite_[1] = Sprite::Create(textureHandle_, {posX_[1], 0});
 }
 
 void Stage::Update() {
-	scrollX_ -= scrollSpeed_;
-	
+	// 2枚とも左に動かす
+	for (int i = 0; i < 2; i++) {
+		posX_[i] -= scrollSpeed_;
+		// 画面外に出たら右端に移動
+		if (posX_[i] <= -1280.0f) {
+			posX_[i] = posX_[(i + 1) % 2] + 1280.0f;
+		}
+		sprite_[i]->SetPosition({posX_[i], 0});
+	}
 }
 
 void Stage::Draw() {
-	// 画面幅が1280pxの場合、2枚分描画すればOK
-	for (int i = 0; i < 2; ++i) {
-		float x = scrollX_ * i;
-		sprite_->SetPosition({x, 0});
-		sprite_->Draw();
-	}
 	
+	sprite_[0]->Draw();
+	sprite_[1]->Draw();
+
+
 }
