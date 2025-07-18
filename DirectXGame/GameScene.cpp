@@ -90,6 +90,9 @@ void GameScene::Draw() {
 	stage_->Draw();
 	Sprite::PostDraw();
 
+	  // 深度バッファクリア
+	dxCommon->ClearDepthBuffer();
+
 	//3Dモデル描画前処理
 	Model::PreDraw(dxCommon->GetCommandList());
 
