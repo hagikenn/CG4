@@ -47,6 +47,9 @@ void GameScene::Initialize() {
 	playerModel_ = Model::CreateFromOBJ("cube");
 	player_ = new Player();
 	player_->Initialize(playerModel_);
+
+	graph_ = new Graph();
+	graph_->Initialize();
 }
 
 void GameScene::Update() {
@@ -78,6 +81,7 @@ void GameScene::Update() {
 	titleScene_->Update();
 	stage_->Update();
 	player_->Update();
+	graph_->Update();
 }
 
 void GameScene::Draw() {
@@ -88,6 +92,8 @@ void GameScene::Draw() {
 	Sprite::PreDraw(dxCommon->GetCommandList());
 	//titleScene_->Draw();
 	stage_->Draw();
+	graph_->Draw();
+
 	Sprite::PostDraw();
 
 	  // 深度バッファクリア
